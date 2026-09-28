@@ -29,3 +29,5 @@ http://localhost:8080/ after ~70 s (cold).
   Architecture 100 · Performance 100 · Naming 99 · Design 100 · Other 99.
 
 These are what the template ships with; later scores compare against them.
+- `New` is a reserved word as an enumeration value (CE7247, caught by
+  `mxcli check --references` as MDL010). The first order status is `Received`.
