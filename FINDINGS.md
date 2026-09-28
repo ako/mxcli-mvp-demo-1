@@ -31,3 +31,17 @@ http://localhost:8080/ after ~70 s (cold).
 These are what the template ships with; later scores compare against them.
 - `New` is a reserved word as an enumeration value (CE7247, caught by
   `mxcli check --references` as MDL010). The first order status is `Received`.
+
+## 2026-09-28 — hub preview
+
+- `./mxcli run --hub https://hub.mxcli.org --watch -p MxcliDemo1.mpr` registered
+  with the hub using `MXCLI_HUB_KEY` from the environment (no `auth hub login`
+  needed) and printed
+  `https://mxclidemo1-claude-mxclidemo1-mendix-setup-g4nyg3.mxcli.org`
+  (subdomain = `.mpr` name + git branch). Tunnel went out through the session's
+  egress proxy without extra config.
+- Verified: `/dist/index.js` answers 200 locally; through the hub, unauthenticated
+  requests get a 302 to `hub.mxcli.org/auth/github/login`, so the preview is
+  only viewable after signing in with GitHub.
+- The preview URL only lives as long as this session's `mxcli run`; a new session
+  must re-run the command (the SessionStart hook does not start it).
